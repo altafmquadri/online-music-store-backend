@@ -2,8 +2,10 @@ package com.capstone.admincontrollers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.SessionAttributes;
@@ -15,6 +17,8 @@ import com.capstone.exceptions.IncorrectLoginException;
 import com.capstone.service.Authentication;
 
 @RestController
+@RequestMapping("/api")
+@CrossOrigin(origins = "http://localhost:3000")
 @SessionAttributes("admin")
 public class LoginController {
 	
@@ -22,6 +26,16 @@ public class LoginController {
 	AdminDAO adminDao;
 	@Autowired
 	Authentication auth;
+	
+	@RequestMapping( path="/hello-world") 
+	public String helloWorld() {
+		return "Hello from Spring";
+	}
+	
+//	@RequestMapping( path="/hello-world") 
+//	public HelloWorld helloWorldBean() {
+//		return new HelloWorld("Hello from Spring");
+//	}
 	
 	@GetMapping("admin/login")
 	public ModelAndView showloginpage() {
