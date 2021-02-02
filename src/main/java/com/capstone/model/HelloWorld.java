@@ -1,4 +1,4 @@
-package com.capstone.admincontrollers;
+package com.capstone.model;
 
 public class HelloWorld {
 	private String message;
