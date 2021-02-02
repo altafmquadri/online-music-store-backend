@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -44,6 +45,11 @@ public class AdminLoginControllerReact {
 	@GetMapping("/admin/songs")
 	public List<Song> getSongs(){
 		return (List<Song>) songDao.findAll();
+	}
+	
+	@GetMapping("admin/edit/songs/{id}")
+	public Song getSong(@PathVariable("id") int id) {
+		return songDao.findById(id).get();
 	}
 
 }
