@@ -17,9 +17,7 @@ import com.capstone.dao.SongDAO;
 import com.capstone.model.Admin;
 import com.capstone.model.HelloWorld;
 import com.capstone.model.Song;
-import com.capstone.service.Authentication;
 
-//test to commit
 
 @RestController
 @CrossOrigin(origins = "http://localhost:3000")
@@ -28,8 +26,8 @@ public class AdminLoginControllerReact {
 
 	@Autowired
 	AdminDAO adminDao;
-	@Autowired
-	Authentication auth;
+//	@Autowired
+//	Authentication auth;
 	@Autowired
 	SongDAO songDao;
 
@@ -41,8 +39,9 @@ public class AdminLoginControllerReact {
 
 	@PostMapping(path = "admin/login", consumes = "application/json")
 	public boolean verifyLogin(@RequestBody Admin admin) {
-		boolean isValid = auth.authenticate(admin.getUsername(), admin.getPassword(), adminDao);
-		return isValid;
+//		boolean isValid = auth.authenticate(admin.getUsername(), admin.getPassword(), adminDao);
+//		return isValid;
+		return false;
 	}
 
 	@GetMapping("/admin/songs")
