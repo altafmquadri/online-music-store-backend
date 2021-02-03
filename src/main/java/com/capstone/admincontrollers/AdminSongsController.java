@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.capstone.dao.CustomerDAO;
+//import com.capstone.dao.CustomerDAO;
 import com.capstone.dao.SongDAO;
-import com.capstone.model.Customer;
+//import com.capstone.model.Customer;
 import com.capstone.model.Song;
 
 @RestController
@@ -24,8 +24,6 @@ public class AdminSongsController {
 	@Autowired
 	SongDAO songDao;
 
-	@Autowired
-	CustomerDAO custDao;
 
 	@GetMapping("admin/songs")
 	public ModelAndView showPage(ModelMap model) {
@@ -83,7 +81,7 @@ public class AdminSongsController {
 
 	@GetMapping("admin/viewusers")
 	public ModelAndView showUsers(ModelMap model) {
-		model.put("users", (List<Customer>) custDao.findAll());
+//		model.put("users", (List<Customer>) custDao.findAll());
 		return new ModelAndView("viewusers");
 	}
 }
