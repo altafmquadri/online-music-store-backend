@@ -30,8 +30,8 @@ import com.capstone.model.Song;
 import com.capstone.service.JwtUserDetailsService;
 
 @RestController
-//@CrossOrigin(origins = "http://localhost:3000")
-@CrossOrigin
+@CrossOrigin(origins = "http://localhost:3000")
+//@CrossOrigin
 @RequestMapping("/api")
 public class AdminLoginControllerReact {
 
