@@ -22,7 +22,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.capstone.config.JwtTokenUtil;
 import com.capstone.dao.AdminDAO;
 import com.capstone.dao.SongDAO;
-import com.capstone.model.Admin;
 import com.capstone.model.HelloWorld;
 import com.capstone.model.JwtRequest;
 import com.capstone.model.JwtResponse;
@@ -58,13 +57,9 @@ public class AdminLoginControllerReact {
 
 	@RequestMapping(value = "/authenticate", method = RequestMethod.POST)
 	public ResponseEntity<?> createAuthenticationToken(@RequestBody JwtRequest authenticationRequest) throws Exception {
-
 		authenticate(authenticationRequest.getUsername(), authenticationRequest.getPassword());
-
 		final UserDetails userDetails = userDetailsService.loadUserByUsername(authenticationRequest.getUsername());
-
 		final String token = jwtTokenUtil.generateToken(userDetails);
-
 		return ResponseEntity.ok(new JwtResponse(token));
 	}
 
@@ -76,13 +71,6 @@ public class AdminLoginControllerReact {
 		} catch (BadCredentialsException e) {
 			throw new Exception("INVALID_CREDENTIALS", e);
 		}
-	}
-
-	@PostMapping(path = "admin/login", consumes = "application/json")
-	public boolean verifyLogin(@RequestBody Admin admin) {
-//		boolean isValid = auth.authenticate(admin.getUsername(), admin.getPassword(), adminDao);
-//		return isValid;
-		return false;
 	}
 
 	@GetMapping("/admin/songs")
@@ -126,6 +114,5 @@ public class AdminLoginControllerReact {
 		Song song = songDao.findById(id).get();
 		songDao.delete(song);
 		return song;
-
 	}
 }

@@ -9,4 +9,5 @@ import com.capstone.model.Admin;
 public interface AdminDAO extends CrudRepository<Admin, Integer>{
 	
 	 public Optional<Admin> findOneByUsernameAndPassword(String username, String password);
+	 public Optional<Admin> findOneByUsername(String username);
 }
