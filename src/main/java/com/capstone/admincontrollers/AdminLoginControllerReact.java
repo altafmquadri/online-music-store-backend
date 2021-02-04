@@ -29,8 +29,6 @@ import com.capstone.model.Song;
 import com.capstone.service.JwtUserDetailsService;
 
 @RestController
-//@CrossOrigin(origins = "http://localhost:3000", allowedHeaders = "*")
-//@CrossOrigin(origins = "http://localhost:3000", allowedHeaders = "Authorization")
 @CrossOrigin
 @RequestMapping("/api")
 public class AdminLoginControllerReact {
