@@ -59,7 +59,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
 				.antMatchers("/api/authenticate").permitAll()
 				
-				.anyRequest().authenticated().and().
+				.anyRequest().authenticated().and().cors().and().
 				
 				exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoint).and().sessionManagement()
 				.sessionCreationPolicy(SessionCreationPolicy.STATELESS);
@@ -86,5 +86,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 //		
 //		// Add a filter to validate the tokens with every request
 //		httpSecurity.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
+//	}
+	
+//	public WebMvcConfigurer corsConfigurer() {
+//		return new WebMvcConfigurer() {
+//			@Override
+//			public void addCorsMappings(CorsRegistry registry) {
+//				registry.addMapping("/greeting-javaconfig").allowedOrigins("http://localhost:8080");
+//			}
+//		};
 //	}
 }
