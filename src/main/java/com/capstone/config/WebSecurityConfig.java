@@ -53,19 +53,37 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity httpSecurity) throws Exception {
 		// We don't need CSRF for this example
 		httpSecurity.csrf().disable()
-				// don't authenticate this particular request
-				.authorizeRequests().antMatchers("/api/authenticate").permitAll().
-				// all other requests need to be authenticated
-				// this allows Options Methods to be permitted, so CORS is not triggered when
-				// request comes from different client routes
-				antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
+				
+				.authorizeRequests()
+				.antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
+				.antMatchers("/api/authenticate").permitAll()
+				
 				.anyRequest().authenticated().and().
-				// make sure we use state-less session; session won't be used to
-				// store user's state.
+				
 				exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoint).and().sessionManagement()
 				.sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 
 		// Add a filter to validate the tokens with every request
 		httpSecurity.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
 	}
+//	@Override
+//	protected void configure(HttpSecurity httpSecurity) throws Exception {
+//		// We don't need CSRF for this example
+//		httpSecurity.csrf().disable()
+//		// don't authenticate this particular request
+//		.authorizeRequests()
+//		.antMatchers("/api/authenticate").permitAll().
+//		// all other requests need to be authenticated
+//		// this allows Options Methods to be permitted, so CORS is not triggered when
+//		// request comes from different client routes
+//		antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
+//		.anyRequest().authenticated().and().
+//		// make sure we use state-less session; session won't be used to
+//		// store user's state.
+//		exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoint).and().sessionManagement()
+//		.sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+//		
+//		// Add a filter to validate the tokens with every request
+//		httpSecurity.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
+//	}
 }
